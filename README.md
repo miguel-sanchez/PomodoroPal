@@ -101,7 +101,7 @@ PomodoroPal/
 │   └── requirements.txt  # Python dependencies
 │
 └── README.md             # This documentation
-
+```
 
 ## Technologies used
 
