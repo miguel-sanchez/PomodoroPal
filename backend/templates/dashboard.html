@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}PomodoroPal: Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+  <!-- Statistics cards: Start -->
+  <div class="stats-container">
+    <div class="stat-card">
+      <div class="stat-icon">🕒</div>
+      <div class="stat-content">
+        <h3>Total focus time</h3>
+        <p class="stat-value" id="totalFocusTime">0h</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-content">
+        <h3>Sessions completed</h3>
+        <p class="stat-value" id="sessionsCompleted">0</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-content">
+        <h3>Completion rate</h3>
+        <p class="stat-value" id="completionRate">0%</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🥫</div>
+      <div class="stat-content">
+        <h3>Today's sessions</h3>
+        <p class="stat-value" id="todaySessions">0</p>
+      </div>
+    </div>
+  </div>
+  <!-- Statistics cards: End -->
+
+  <!-- Charts section: Start -->
+  <div class="charts-container">
+    <div class="chart-card">
+      <h3>Session types distribution</h3>
+      <canvas id="sessionTypesChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Daily activity (last 7 days)</h3>
+      <canvas id="dailyActivityChart"></canvas>
+    </div>
+  </div>
+  <!-- Charts section: End -->
+
+  <!-- Recent sessions table: Start -->
+  <div class="table-container">
+    <div>
+      <h3>Recent sessions</h3>
+      <div class="export-buttons">
+        <button id="exportCsvBtn" class="export-btn">📊 Export CSV</button>
+        <button id="exportJsonBtn" class="export-btn">📄 Export JSON</button>
+      </div>
+    </div>
+
+    <table class="sessions-table" id="sessionsTable">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Duration</th>
+          <th>Status</th>
+          <th>Started at</th>
+          <th>Ended at</th>
+        </tr>
+      </thead>
+      <tbody id="sessionsTableBody">
+        <!-- Sessions are loaded here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

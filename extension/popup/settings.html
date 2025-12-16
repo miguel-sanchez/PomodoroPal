@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PomodoroPal: Settings</title>
+  <link rel="stylesheet" href="pomodoropal-extension.css">
+</head>
+<body>
+  <div class="settings-container">
+    <header class="settings-header">
+      <button class="btn-back" id="backBtn">←</button>
+      <h2>Settings</h2>
+      <div></div>
+    </header>
+
+    <main>
+
+      <!-- Toogle buttons: Start -->
+      <div class="toggle-group">
+        <label for="blockingEnabled">Enable site blocking</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="blockingEnabled">
+          <span class="slider"></span>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label for="blockDuringWork">Block only during work sessions</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="blockDuringWork" checked>
+          <span class="slider"></span>
+        </div>
+      </div>
+      <!-- Toogle buttons: End -->
+
+      <!-- Blocked sites: Start -->
+      <div class="blocked-sites">
+        <h3>Blocked sites</h3>
+
+        <div class="site-input-group">
+          <input type="text" class="site-input" id="siteInput" placeholder="e.g., facebook.com">
+          <button class="add-btn" id="addSiteBtn">Add</button>
+        </div>
+
+        <div class="site-input-tip">
+          <p>Tip: Add only the domain name without https:// or www.</p>
+        </div>
+
+        <div class="sites-list" id="sitesList">
+          <!-- Blocked sites: Loaded here -->
+        </div>
+      </div>
+      <!-- Blocked sites: End -->
+
+    </main>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+
+</html>

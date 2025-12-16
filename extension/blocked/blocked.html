@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PomodoroPal: Site blocked</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #dd2e44 0%, #333 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(.6rem);
+      border-radius: 1.2rem;
+      max-width: 31rem;
+      margin: 2rem;
+    }
+
+    /* Logo animation */
+    .emoji {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Main content */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: .9;
+    }
+
+    .timer {
+      font-size: 3rem;
+      font-weight: bold;
+      font-variant-numeric: tabular-nums;
+      margin: 2rem 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    button {
+      padding: .7rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: .6rem;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #914650;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .2);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, .2);
+      color: #fff;
+      border: 2px solid #fff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, .3);
+    }
+
+    .quote {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      font-style: italic;
+      border-top: 1px solid rgba(255, 255, 255, .2);
+      opacity: .8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="emoji">🍅</div>
+    <h1>Stay focused!</h1>
+    <p>This site is blocked during your focus session</p>
+
+    <div class="timer" id="timer">--:--</div>
+
+    <div class="buttons">
+      <button class="btn-primary" id="backBtn">Go back</button>
+      <button class="btn-secondary" id="dashboardBtn">View dashboard</button>
+    </div>
+
+    <div class="quote">
+      "Focus is not about saying yes to the thing you've got to focus on.
+      It's about saying no to the hundred other good ideas." - Steve Jobs
+    </div>
+  </div>
+
+  <script src="blocked.js"></script>
+</body>
+
+</html>

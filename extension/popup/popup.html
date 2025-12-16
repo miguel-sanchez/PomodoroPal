@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PomodoroPal</title>
+  <link rel="stylesheet" href="pomodoropal-extension.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>PomodoroPal</h1>
+    </header>
+
+    <main>
+      <!-- Timer -->
+      <div class="timer-display">
+        <span id="minutes">25</span>:<span id="seconds">00</span>
+      </div>
+
+      <!-- Buttons / Control: Start and Reset -->
+      <div class="buttons-control">
+        <button id="startBtn" class="btn btn-start">Start</button>
+        <button id="pauseBtn" class="btn btn-pause">Pause</button>
+        <button id="resetBtn" class="btn btn-reset">Reset</button>
+      </div>
+
+      <!-- Buttons / Mode: Work, Short break and Long break -->
+      <div class="buttons-mode">
+        <button class="btn-mode active" data-mode="pomodoro">🍅 Work</button>
+        <button class="btn-mode" data-mode="shortBreak">☕ Short break</button>
+        <button class="btn-mode" data-mode="longBreak">🌴 Long break</button>
+      </div>
+    </main>
+
+    <footer>
+      <!-- Button / Settings -->
+      <button id="btn-settings" class="control-btn" aria-label="Settings">⚙️</button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
