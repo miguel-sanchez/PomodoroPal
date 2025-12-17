@@ -55,6 +55,8 @@ python3 app.py
 
 The backend will be available at `http://127.0.0.1:5000`.
 
+**Note**: The database file and `instance/` directory will be created automatically the first time you run `python3 app.py`.
+
 ### Extension installation
 
 1. Open Chrome and navigate to `chrome://extensions/`.
