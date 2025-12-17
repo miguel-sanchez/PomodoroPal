@@ -32,6 +32,9 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Base directory for the application (defined here so __file__ is properly resolved)
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
 class Config:
   """Base configuration"""
 
@@ -39,7 +42,8 @@ class Config:
   SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key'
 
   # Database
-  SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///instance/pomodoropal.db'
+  # Use absolute path for SQLite database to ensure it's created in the correct location
+  SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or f'sqlite:///{os.path.join(BASE_DIR, "instance", "pomodoropal.db")}'
   SQLALCHEMY_TRACK_MODIFICATIONS = False
 
   # CORS

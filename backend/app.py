@@ -232,7 +232,8 @@ def get_stats():
 def init_db():
   """Initialize the database"""
   # Create instance directory if it doesn't exist
-  instance_path = os.path.join(os.path.dirname(__file__), 'instance')
+  # Use absolute path to ensure consistency with config.py
+  instance_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'instance')
   if not os.path.exists(instance_path):
     os.makedirs(instance_path)
     print(f"Created instance directory: {instance_path}")
