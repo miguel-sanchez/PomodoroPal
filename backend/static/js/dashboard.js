@@ -68,9 +68,10 @@ async function loadStatistics() {
 
 // Statistics: Update in the UI
 function updateStatistics(stats) {
-  // Total focus time
+  // Total focus time - use minutes directly when less than 1 hour to avoid rounding errors
   const hours = stats.total_focus_hours || 0;
-  document.getElementById('totalFocusTime').textContent = hours >= 1 ? `${hours}h` : `${Math.round(hours * 60)}min`;
+  const minutes = stats.total_focus_minutes || 0;
+  document.getElementById('totalFocusTime').textContent = hours >= 1 ? `${hours}h` : `${minutes}min`;
 
   // Sessions completed
   document.getElementById('sessionsCompleted').textContent = stats.completed_sessions || 0;
