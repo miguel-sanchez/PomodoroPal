@@ -1,5 +1,5 @@
 # 🍅 PomodoroPal - CS50 Final project
-PomodoroPal is productivity extension and dashboard.
+PomodoroPal is a productivity extension and dashboard.
 
 ## Video demo: [https://youtu.be/jARWXPRZlBc](https://youtu.be/jARWXPRZlBc)
 
