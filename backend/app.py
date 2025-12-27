@@ -31,6 +31,11 @@ HOW I STRUCTURED IT
 DATABASE
 The app uses SQLite (configured in config.py). When the server starts, it automatically
 creates the database tables if they don't exist yet using the init_db() function.
+
+USE OF AI TOOLS
+I used Claude and Gemini to help me understand how to work with SQLAlchemy. 
+I took adding SQLAlchemy as a challenge, but I was lost when I started learning it.
+I only used AI tools as helpers, but the essence of the work is still my own.
 """
 
 """ Flask application """
@@ -242,7 +247,7 @@ def init_db():
     db.create_all()
     print("Database initialized!")
 
-# Web Dashboard Routes
+# Web dashboard routes
 @app.route('/')
 def dashboard():
   """Render the main dashboard"""

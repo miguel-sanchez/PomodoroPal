@@ -1,6 +1,7 @@
 # 🍅 PomodoroPal - Productivity Extension & Dashboard
 
-## Video demo: <URL HERE>
+## Video demo: [https://youtu.be/jARWXPRZlBc](https://youtu.be/jARWXPRZlBc)
+
 
 ## Description
 PomodoroPal is a productivity system combining a browser extension and a web dashboard. It helps users maintain focus using the Pomodoro Technique while blocking distracting websites. 
@@ -9,6 +10,7 @@ It consists of:
 1. **Chrome extension**: Pomodoro timer with site blocking.
 2. **Web dashboard**: Analytics and session tracking.
 3. **REST API**: Data storage and reporting.
+
 
 ## Features
 
@@ -24,6 +26,7 @@ It consists of:
 - **Analytics**: charts showing session types distribution and activity.
 - **Data export**: download sessions (CSV or JSON).
 - **Responsive design**: works on desktop and mobile.
+
 
 ## Installation
 
@@ -43,27 +46,28 @@ cd PomodoroPal
 cd backend
 
 # Create virtual environment
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Run the server
-python3 app.py
+python app.py
 ```
 
-The backend will be available at `http://127.0.0.1:5000`.
+The backend will be available at 'http://127.0.0.1:5000'.
 
-**Note**: The database file and `instance/` directory will be created automatically the first time you run `python3 app.py`.
+**Note**: The database file and 'instance/' directory will be created automatically the first time you run 'python app.py'.
 
 ### Extension installation
 
-1. Open Chrome and navigate to `chrome://extensions/`.
+1. Open Chrome and navigate to 'chrome://extensions/'.
 2. Enable "Developer mode" (top right).
-3. Click "Load unpacked".
-4. Select the `extension` folder from this project.
+3. Click "Load unpacked" (top left).
+4. Select the 'extension' folder from this project.
 5. The PomodoroPal icon should appear in your Chrome toolbar.
+
 
 ## Usage
 
@@ -74,7 +78,7 @@ The backend will be available at `http://127.0.0.1:5000`.
 4. Work distraction-free: blocked sites will keep you focused.
 
 ### Viewing analytics
-1. Visit `http://127.0.0.1:5000` while the backend is running.
+1. Visit 'http://127.0.0.1:5000' while the backend is running.
 2. View your productivity statistics.
 3. Export data using the CSV/JSON buttons.
 
@@ -84,13 +88,14 @@ The backend will be available at `http://127.0.0.1:5000`.
 3. Add/remove sites from your block list.
 4. Toggle blocking on/off as you need.
 
+
 ## Architecture
 
 ```
 PomodoroPal/
 ├── extension/            # Browser extension
 │   ├── manifest.json     # Extension configuration
-│   ├── popup/            # Timer interface
+│   ├── popup/            # Timer and Settings interface
 │   ├── background/       # Service worker
 │   ├── blocked/          # Block page
 │   └── icons/            # Extension icons
@@ -98,12 +103,14 @@ PomodoroPal/
 ├── backend/              # Flask application
 │   ├── app.py            # Main server
 │   ├── config.py         # Configuration
+│   ├── instance/         # Database
 │   ├── templates/        # HTML templates (dashboard)
 │   ├── static/           # CSS/JS files
 │   └── requirements.txt  # Python dependencies
 │
 └── README.md             # This documentation
 ```
+
 
 ## Technologies used
 
@@ -119,38 +126,8 @@ PomodoroPal/
 - SQLite database.
 - RESTful API design.
 
+
 ## Main files
-
-### Extension: background/background.js
-This is the background service worker for the extension. It runs in the background and 
-handles the Pomodoro timer, communicates with the Flask API, and manages the site blocking feature.
-
-#### Main features
-1. Timer management: Handles the timer countdown using Chrome's alarms API.
-    I use alarms instead of setInterval because I discovered that service workers 
-    can be stopped by Chrome to save resources, but alarms persist. The timer state 
-    is saved to chrome.storage.local so it survives if the browser restarts.
-2. Message handling: Listens for messages from the popup (the UI that users see when they
-    click the extension icon). Actions include START_TIMER, PAUSE_TIMER, RESET_TIMER, and
-    SWITCH_MODE. Reference used for message passing between extension components: 
-    (https://developer.chrome.com/docs/extensions/mv3/messaging/).
-3. Session tracking: When a timer is completed (or gets reset), I save the session data to
-    the Flask backend (via a POST request). This includes session type, duration, completion
-    status, and timestamps. I use async/await for the API calls.
-4. Notifications: Shows browser notifications when a timer is completed. I set 
-    requireInteraction to true so users don't miss the notification.
-5. Site blocking: Uses Chrome declarativeNetRequest API to block distracting websites
-    (during work sessions). I learned this API is more powerful than the old webRequest API.
-    It redirects blocked sites to a custom page (blocked.html).
-6. Badge updates: Updates the extension icon (tomato) badge to show remaining minutes. That way
-    users get a quick indicator without opening the popup.
-
-#### How it works
-- Timer state is stored in a global object. It is also synced to chrome.storage.local.
-- Chrome alarms tick every second to update the countdown.
-- When the timer is completed, it saves the session, shows a notification, and automatically 
-  switches to the next mode.
-- Blocking rules are updated based on timer state and user settings.
 
 ### Extension: popup/popup.js
 This script controls the popup UI that appears when users click the extension icon (tomato) in Chrome. 
@@ -202,6 +179,37 @@ across different browser sessions.
 - Toggle changes are saved to storage immediately.
 - The background script listens for storage changes. Then it updates blocking rules accordingly.
 
+### Extension: background/background.js
+This is the background service worker for the extension. It runs in the background and 
+handles the Pomodoro timer, communicates with the Flask API, and manages the site blocking feature.
+
+#### Main features
+1. Timer management: Handles the timer countdown using Chrome's alarms API.
+    I use alarms instead of setInterval because I discovered that service workers 
+    can be stopped by Chrome to save resources, but alarms persist. The timer state 
+    is saved to chrome.storage.local so it survives if the browser restarts.
+2. Message handling: Listens for messages from the popup (the UI that users see when they
+    click the extension icon). Actions include START_TIMER, PAUSE_TIMER, RESET_TIMER, and
+    SWITCH_MODE. Reference used for message passing between extension components: 
+    (https://developer.chrome.com/docs/extensions/mv3/messaging/).
+3. Session tracking: When a timer is completed (or gets reset), I save the session data to
+    the Flask backend (via a POST request). This includes session type, duration, completion
+    status, and timestamps. I use async/await for the API calls.
+4. Notifications: Shows browser notifications when a timer is completed. I set 
+    requireInteraction to true so users don't miss the notification.
+5. Site blocking: Uses Chrome declarativeNetRequest API to block distracting websites
+    (during work sessions). I learned this API is more powerful than the old webRequest API.
+    It redirects blocked sites to a custom page (blocked.html).
+6. Badge updates: Updates the extension icon (tomato) badge to show remaining minutes. That way
+    users get a quick indicator without opening the popup.
+
+#### How it works
+- Timer state is stored in a global object. It is also synced to chrome.storage.local.
+- Chrome alarms tick every second to update the countdown.
+- When the timer is completed, it saves the session, shows a notification, and automatically 
+  switches to the next mode.
+- Blocking rules are updated based on timer state and user settings.
+
 ### Backend: app.py
 This is the main backend server for my PomodoroPal project. It's a Flask application that
 provides a REST API for storing and retrieving Pomodoro session data.
@@ -226,6 +234,11 @@ provides a REST API for storing and retrieving Pomodoro session data.
 Flask-SQLAlchemy for database operations. I discovered via YouTube and Claude this was easier than raw SQL.
 The app uses SQLite (configured in config.py). When the server starts, it automatically
 creates the database tables if they don't exist yet using the init_db() function.
+
+#### Use of AI tools
+I used Claude and Gemini to help me understand how to work with SQLAlchemy. 
+I took adding SQLAlchemy as a challenge, but I was lost when I started learning it.
+I only used AI tools as helpers, but the essence of the work is still my own.
 
 ### Backend: config.py
 This file contains all the configuration settings for the Flask application. I learned that
@@ -273,12 +286,14 @@ I learned how to use fetch() for API calls and Chart.js for creating the visuali
 | PUT    | `/api/sessions/:id` | Update session      |
 | GET    | `/api/stats`        | Get statistics      |
 
+
 ## License
 
 This project is licensed under the MIT License.
 
+
 ## Acknowledgments
 
-- CS50x course staff and professor David J. Malan for being such an amazing source of knowledge and inspiration.
+- CS50 course staff and professor David J. Malan for being such an amazing source of knowledge and inspiration.
 - The Pomodoro Technique® by Francesco Cirillo.
 - Open source community for various libraries I have used.
