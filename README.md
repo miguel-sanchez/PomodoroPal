@@ -12,6 +12,12 @@ It consists of:
 2. **Web dashboard**: Analytics and session tracking.
 3. **REST API**: Data storage and reporting.
 
+### Why PomodoroPal?
+
+I had previous experience developing very humble VS Code extensions. I work as an IT trainer and I created a few extensions to help my frontend development students. But these extensions are just collections of code snippets. [VS Code extensions I created for students](https://marketplace.visualstudio.com/publishers/inarocket).
+
+So I thought I could also create an extension for Google Chrome and to go beyond simple snippets by using what I have learnt of Flask and other useful topics throughout CS50.
+
 
 ## Features
 
